@@ -41,7 +41,7 @@ kind: Deployment
 metadata:
  name: web
 spec:
- replicas: 10
+ replicas: 1
  selector: 
   matchLabels:
    app: web
@@ -52,7 +52,7 @@ spec:
   spec:
    containers:
      - name: web
-       image: cesareiji/kube-news:v2
+       image: cesareiji/kube-news:{{TAG}}
        ports:
        - containerPort: 8080
        env:
@@ -75,5 +75,4 @@ spec:
   ports:
    - port: 80
      targetPort: 8080
-     nodePort: 30000
-  type: NodePort
+  type: LoadBalancer
